@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXÈ BAGS — Luxury Handbag Store</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="scroll-smooth">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">LUXÈ BAGS</a>
+            
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#products-section">Products</a>
+            </div>
+
+            <div class="nav-actions">
+                <button onclick="openLoginModal()" class="icon-btn">
+                    <i class="far fa-user"></i>
+                    <span id="user-display">Log In</span>
+                </button>
+
+                <button onclick="toggleCart(true)" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <div id="cart-count" class="badge" style="display: none;">0</div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">Summer Collection 2026</span>
+                <h1 class="hero-title">Crafted for Pure Luxury</h1>
+                <p class="hero-desc">Discover artisanal luxury handbags meticulously shaped from elite-tier leather, tailored to perfectly enhance your style signature.</p>
+                <div>
+                    <a href="#products-section" class="btn">Explore Collection</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="images/bag1.jpeg" alt="Luxury Handbag" onerror="this.src='https://unsplash.com'">
+            </div>
+        </div>
+    </header>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products-section" class="products-section">
+        <div class="section-header">
+            <h2>Our Signature Pieces</h2>
+            <p>Handpicked luxury items curated just for you.</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <img src="images/bag2.jpeg" alt="Classic Leather Bag" onerror="this.src='https://unsplash.com'">
+                </div>
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3>Cherry Curve Top Handle Tope</h3>
+                        <p>Handbag with unique design and cute cherry charm detail,classy look for work or weekend outings.</p>
+                    </div>
+                    <div class="product-price-row">
+                        <span class="price">TSh 25,000</span>
+                        <button onclick="addToCart('Classic Leather Tote', 75000)" class="btn-secondary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <img src="images/bag1.jpeg" alt="Elegant Pastel Shoulder Bag" onerror="this.src='https://unsplash.com'">
+                </div>
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3>Mint Pearl Satchel Bag</h3>
+                        <p>Handbag with a detachable crossbody strap,perfect for casual days,office or coffee dates.</p>
+                    </div>
+                    <div class="product-price-row">
+                        <span class="price">TSh 20,000</span>
+                        <button onclick="addToCart('Elegant Pastel Shoulder', 90000)" class="btn-secondary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img-holder">
+                    <img src="images/bag3.jpeg" alt="Minimalist City Satchel" onerror="this.src='https://unsplash.com'">
+                </div>
+                <div class="product-info">
+                    <div class="product-details">
+                        <h3>Lux B Executive</h3>
+                        <p>Premium black textured handbag with luxury gold hardware,ideal for events or events.</p>
+                    </div>
+                    <div class="product-price-row">
+                        <span class="price">TSh 20,000</span>
+                        <button onclick="addToCart('Minimalist City Satchel', 60000)" class="btn-secondary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OVERLAYS -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeAllOverlays()"></div>
+
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="login-modal">
+        <div class="login-header">
+            <button onclick="closeLoginModal()" class="close-modal">&times;</button>
+            <h3>Welcome Back</h3>
+            <p>Enter details below to log into your space.</p>
+        </div>
+        <form onsubmit="executeLogin(event)" class="checkout-form">
+            <div class="form-group">
+                <input type="email" id="login-email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+        </form>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <aside id="cart-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Your Selection</h3>
+            <button onclick="toggleCart(false)" class="close-sidebar">&times;</button>
+        </div>
+
+        <div id="cart-body" class="cart-body">
+            <p class="empty-text">Your bag is currently empty.</p>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cart-total">TSh 0</span>
+            </div>
+            <form id="checkout-form" onsubmit="executeCheckout(event)" class="checkout-form">
+                <div class="form-group">
+                    <input type="text" id="cust-name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="cust-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="cust-addr" placeholder="Delivery Address (e.g., Sinza, Dar)" required>
+                </div>
+                <button type="submit" class="btn-success">Place Order via Email</button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- Link to external JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+<footer style="text-align: center; padding: 20px; background: #111; color: #fff; font-size: 14px;">
+  &copy; <span id="year"></span> 0xf4c3 Cyph3r. all rights are reserved
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</html>
